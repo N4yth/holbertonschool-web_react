@@ -25,10 +25,10 @@ class Teacher implements TeacherInterface {
 function createEmployee(salary: number | string): Teacher | Director {
   if (typeof salary === 'number') {
     if (salary < 500) {
-      return new Teacher()
+      return new Teacher();
     } 
   }  
-  return new Director()
+  return new Director();
 }
 
 function isDirector(employee: any) {
@@ -37,8 +37,19 @@ function isDirector(employee: any) {
 
 function executeWork(employee: any) {
   if(isDirector(employee)) {
-    console.log(employee.workDirectorTasks())
+    console.log(employee.workDirectorTasks());
   } else {
-    console.log(employee.workTeacherTasks())
+    console.log(employee.workTeacherTasks());
   }
+}
+
+type Subjects = 'Math' | 'History';
+
+function teachClass(todayClass: Subjects) {
+  if (todayClass === 'History'){
+    console.log('Teaching History')
+    return 'Teaching History';
+  }
+  console.log('Teaching Math')
+  return 'Teaching Math';
 }
