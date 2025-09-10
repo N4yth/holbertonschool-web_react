@@ -11,15 +11,15 @@ interface TeacherInterface {
 } 
 
 class Director implements DirectorInterface {
-  workFromHome(): string { return 'Currently working' }
+  workFromHome(): string { return 'Working from home' }
   workDirectorTasks(): string { return 'Getting to director tasks' }
   getCoffeeBreak(): string { return 'Getting a coffee break' }
 }
 
 class Teacher implements TeacherInterface {
   workFromHome(): string { return 'Cannot work from home' }
-  workTeacherTasks(): string { return 'Getting to director tasks' }
-  getCoffeeBreak(): string { return 'Getting to work' }
+  workTeacherTasks(): string { return 'Getting to work' }
+  getCoffeeBreak(): string { return 'Cannot have a break' }
 }
 
 function createEmployee(salary: number | string): Teacher | Director {
@@ -29,4 +29,16 @@ function createEmployee(salary: number | string): Teacher | Director {
     } 
   }  
   return new Director()
+}
+
+function isDirector(employee: any) {
+  return employee.workDirectorTasks !== undefined;
+}
+
+function executeWork(employee: any) {
+  if(isDirector(employee)) {
+    console.log(employee.workDirectorTasks())
+  } else {
+    console.log(employee.workTeacherTasks())
+  }
 }
